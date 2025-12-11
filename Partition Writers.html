@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0" />
+<title>Partition Writers (1947)</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;700&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --bg:#f2f6f9;
+  --card:#ffffff;
+  --accent:#9b2c2c;
+  --muted:#5b6170;
+  --radius:14px;
+  font-family:"Montserrat",sans-serif;
+  color:#0f1724;
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  background:var(--bg);
+  padding:24px;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  overflow-x:hidden;
+}
+
+/* POPUP */
+#introScreen{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.6);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  z-index:10000;
+  animation:fadeIn 0.45s ease forwards;
+}
+.intro-box{
+  width:88%;
+  max-width:600px;
+  background:var(--card);
+  padding:30px;
+  border-radius:18px;
+  text-align:center;
+  box-shadow:0 18px 50px rgba(0,0,0,0.28);
+  transform:scale(0.92);
+  opacity:0;
+  animation:popIn 0.6s ease forwards;
+}
+.intro-logo{
+  width:110px;
+  margin-bottom:12px;
+}
+.enter-btn{
+  margin-top:20px;
+  padding:12px 28px;
+  border:none;
+  border-radius:10px;
+  background:var(--accent);
+  color:white;
+  font-size:15px;
+  font-weight:600;
+  cursor:pointer;
+  box-shadow:0 8px 18px rgba(155,44,44,0.18);
+}
+
+/* ANIMATIONS */
+@keyframes popIn{0%{opacity:0;transform:scale(0.85);}100%{opacity:1;transform:scale(1);}}
+@keyframes fadeOut{0%{opacity:1;}100%{opacity:0;}}
+@keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
+@keyframes fadeUp{
+  0%{opacity:0; transform:translateY(26px);}
+  100%{opacity:1; transform:translateY(0);}
+}
+
+/* LAYOUT */
+.container{
+  max-width:1100px;
+  margin:0 auto;
+}
+header{
+  display:flex;
+  align-items:center;
+  gap:16px;
+  margin-bottom:8px;
+}
+.logo{
+  width:70px;
+  height:70px;
+  border-radius:50%;
+  background:var(--card);
+  border:3px solid var(--accent);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  overflow:hidden;
+  flex-shrink:0;
+}
+.logo img{width:100%;height:100%;object-fit:contain;}
+.title h1{margin:0;font-size:20px;}
+.title p{margin:2px 0 0;font-size:13px;color:var(--muted)}
+
+/* CARDS */
+.card{
+  background:var(--card);
+  padding:20px;
+  border-radius:var(--radius);
+  box-shadow:0 6px 18px rgba(0,0,0,0.08);
+  margin-top:18px;
+  opacity:0;
+  transform:translateY(30px);
+  animation:fadeUp 0.7s forwards;
+}
+.card h2{margin:0 0 8px 0;font-size:18px}
+.movement{
+  background:#fff6f6;
+  padding:10px;
+  border-radius:8px;
+  margin-top:8px;
+  border:1px solid #fdecea;
+  font-size:14px;
+}
+
+/* TEXT LISTS */
+ul{margin:8px 0 0 20px;color:var(--muted)}
+li{margin-bottom:6px}
+
+/* GALLERY */
+.gallery{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
+  gap:14px;
+  margin-top:12px;
+}
+figure{
+  background:var(--card);
+  border-radius:10px;
+  overflow:hidden;
+  border:1px solid #e4e4e4;
+  margin:0;
+  transition: transform 0.28s, box-shadow 0.28s;
+}
+figure:hover{
+  transform:translateY(-6px) scale(1.02);
+  box-shadow:0 18px 40px rgba(8,25,60,0.08);
+}
+figure img{
+  width:100%;
+  height:140px;
+  object-fit:cover;
+  display:block;
+}
+figcaption{
+  padding:10px;
+  font-size:13px;
+  color:var(--muted);
+  text-align:center;
+  min-height:44px;
+}
+
+/* FOOTER NOTE */
+.note{
+  margin-top:14px;
+  font-size:13px;
+  color:var(--muted);
+}
+
+/* RESPONSIVE */
+@media (max-width:720px){
+  body{padding:14px;}
+  .intro-box{padding:20px}
+  .intro-logo{width:90px}
+  .title h1{font-size:18px}
+  .card{padding:16px}
+  figure img{height:120px}
+}
+</style>
+
+</head>
+<body>
+
+<!-- POPUP -->
+<div id="introScreen" aria-hidden="false">
+  <div class="intro-box" role="dialog" aria-labelledby="introTitle">
+    <img src="file:///C:/Users/user/Desktop/School%20Logo.jpeg.jpg" alt="Flag">
+    <h1 id="introTitle">Scholars Rosary School</h1>
+    <p><strong>Partition Writers (1947)</strong></p>
+    <p>Stories, Testimony and Literature born of the Partition</p>
+    <button class="enter-btn" id="enterBtn">Enter Project</button>
+  </div>
+</div>
+
+<div class="container" id="mainContent" aria-hidden="true">
+
+<header>
+  <div class="logo" aria-hidden="true">
+    <img src="file:///C:/Users/user/Desktop/School%20Logo.jpeg.jpg" alt="Logo">
+  </div>
+  <div class="title">
+    <h1>Partition Writers & Themes (1947)</h1>
+  </div>
+</header>
+
+<!-- OVERVIEW -->
+<section class="card" style="animation-delay:0.2s">
+  <h2>Overview</h2>
+  <p>The Partition of British India in 1947 produced an enormous human tragedy and a powerful body of literature. Writers from multiple languages and regions wrote stories and novels that documented violence, displacement, identity, and memory.</p>
+
+  <div class="movement">• <b>Trauma & Memory</b> — personal testimony, refugee stories</div>
+  <div class="movement">• <b>Communal Violence</b> — depiction of riots and human cost</div>
+  <div class="movement">• <b>Identity & Loss</b> — fractured lives, migration, new nation-states</div>
+</section>
+
+<!-- WRITERS LIST -->
+<section class="card" style="animation-delay:0.4s">
+  <h2>Notable Writers</h2>
+  <ul>
+    <li><b>Saadat Hasan Manto</b> — stories like "Toba Tek Singh", "Khol Do".</li>
+    <li><b>Khushwant Singh</b> — "Train to Pakistan".</li>
+    <li><b>Attia Hosain</b> — "Sunlight on a Broken Column".</li>
+    <li><b>Bhisham Sahni</b> — "Tamas".</li>
+    <li><b>Yashpal</b> — "Jhoota Sach" and other works.</li>
+    <li><b>Anita Desai</b> — "Clear Light of Day" (family memory across Partition).</li>
+    <li><b>Salman Rushdie</b> — "Midnight's Children" (magical realism touching Partition-era history).</li>
+  </ul>
+
+  <p class="note">This list mixes direct Partition literature (Manto, Bhisham Sahni) with authors whose works explore Partition’s effects across generations (Desai, Rushdie).</p>
+</section>
+
+<!-- THEMES & TECHNIQUES -->
+<section class="card" style="animation-delay:0.6s">
+  <h2>Common Themes & Literary Techniques</h2>
+  <div class="movement">• <b>Realist Testimony</b> — vivid, often brutal short stories and reportage</div>
+  <div class="movement">• <b>Symbolism & Allegory</b> — using small scenes to stand for larger national ruptures</div>
+  <div class="movement">• <b>Multiple Voices</b> — polyphonic narratives to convey mass displacement</div>
+  <p style="margin-top:10px;color:var(--muted)">Writers used both realist and experimental forms to capture the unprecedented scale of upheaval.</p>
+</section>
+
+<!-- GALLERY -->
+<section class="card" style="animation-delay:0.8s">
+  <h2>Gallery: Portraits & Works</h2>
+
+  <div class="gallery">
+
+    <figure>
+      <!-- Replace src below with direct image URL from Wikimedia if you want a raw image file -->
+      <img src="file:///C:/Users/user/Desktop/Singh.jpeg">
+      <figcaption><strong>Saadat Hasan Manto</strong><br><small>"Toba Tek Singh"</small></figcaption>
+    </figure>
+
+    <figure>
+      <img src="file:///C:/Users/user/Desktop/Train.jpeg" alt="Khushwant Singh portrait">
+      <figcaption><strong>Khushwant Singh</strong><br><small>"Train to Pakistan"</small></figcaption>
+    </figure>
+
+    <figure>
+      <img src="file:///C:/Users/user/Desktop/Attia.jpeg" alt="Attia Hosain portrait">
+      <figcaption><strong>Attia Hosain</strong><br><small>"Sunlight on a Broken Column"</small></figcaption>
+    </figure>
+
+    <figure>
+      <img src="file:///C:/Users/user/Desktop/Tamas.jpeg" alt="Bhisham Sahni portrait">
+      <figcaption><strong>Bhisham Sahni</strong><br><small>"Tamas"</small></figcaption>
+    </figure>
+
+    <figure>
+      <img src="file:///C:/Users/user/Desktop/Yashpal.jpeg" alt="Yashpal portrait">
+      <figcaption><strong>Yashpal</strong><br><small>"Jhoota Sach"</small></figcaption>
+    </figure>
+
+    <figure>
+      <img src="file:///C:/Users/user/Desktop/Light.jpeg" alt="Anita Desai portrait">
+      <figcaption><strong>Anita Desai</strong><br><small>"Clear Light of Day"</small></figcaption>
+    </figure>
+
+    <figure>
+      <img src="file:///C:/Users/user/Desktop/Salman.png" alt="Salman Rushdie portrait">
+      <figcaption><strong>Salman Rushdie</strong><br><small>"Midnight's Children"</small></figcaption>
+    </figure>
+
+  </div>
+</section>
+
+</div>
+
+<script>
+/* Intro / accessibility: open/close */
+const intro = document.getElementById('introScreen');
+const main = document.getElementById('mainContent');
+const enterBtn = document.getElementById('enterBtn');
+
+function closeIntro(){
+  if(!intro) return;
+  intro.style.animation = 'fadeOut 0.6s forwards';
+  intro.setAttribute('aria-hidden','true');
+  setTimeout(()=>{
+    try{ intro.remove(); }catch(e){}
+    main.setAttribute('aria-hidden','false');
+  },620);
+}
+
+enterBtn.addEventListener('click', closeIntro);
+document.addEventListener('keydown', e => {
+  if(document.body.contains(intro) && (e.key === 'Enter' || e.key === ' ')){
+    e.preventDefault();
+    closeIntro();
+  }
+});
+</script>
+
+</body>
+</html>
